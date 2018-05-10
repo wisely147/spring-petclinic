@@ -13,8 +13,8 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        //sh 'mvn clean install'
-	sh 'mvn clean findbugs:findbugs package'
+        sh 'mvn clean install'
+	//sh 'mvn clean findbugs:findbugs package'
       }
     }
     stage('Build container') {
