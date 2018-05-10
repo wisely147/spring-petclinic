@@ -10,11 +10,24 @@ pipeline {
   }
 
   stages {
+    stage('Testing') {
+      agent any
+      steps {
+        sh 'mvn clean test'
+	//sh 'mvn clean findbugs:findbugs package'
+      }
+    }
     stage('Build') {
       agent any
       steps {
-        sh 'mvn clean install'
+        sh 'mvn package -Dmaven.test.skip=true'
 	//sh 'mvn clean findbugs:findbugs package'
+      }
+    }
+    stage('Sonar Scan') {
+      agent any
+      steps {
+         sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000  -Dsonar.login=510fb1436a47a261a3e0dd495f02c6da27861e61'
       }
     }
     stage('Build container') {
@@ -36,20 +49,6 @@ pipeline {
       steps {
         sh 'docker rm -f petclinic-tomcat-temp || true'
         sh "docker run -d -p 9966:8080 --name petclinic-tomcat-temp ${env.IMAGE}:${TAG}"
-      }
-    }
-    stage('Smoke-Test Dev') {
-      agent any
-      steps {
-        //sample dummy step
-        sh 'sleep 4'
-      }
-    }
-    stage('Another stage') {
-      agent any
-      steps {
-        //sample dummy step
-        sh 'sleep 4'
       }
     }
   }
