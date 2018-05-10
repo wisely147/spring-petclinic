@@ -28,7 +28,7 @@ pipeline {
       agent any
       steps {
          //sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000  -Dsonar.login=510fb1436a47a261a3e0dd495f02c6da27861e61'
-         sh 'pass the Sonar Scan'
+         sh 'echo skip the Sonar Scan'
       }
     }
     stage('Build container') {
