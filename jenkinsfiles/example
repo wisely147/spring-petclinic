@@ -24,7 +24,24 @@ pipeline {
         sh 'mvn clean install'
       }
     }
-    stage('Package') {
+    
+    stage('Get Artifact') {
+      agent {
+        docker {
+	  reuseNode true
+          image 'maven:3.5.0-jdk-8'
+        }
+      }
+      steps {
+        sh 'mvn clean'
+        script {
+          pom = readMavenPom file: 'pom.xml'
+          getArtifact(pom.groupId, pom.artifactId, pom.version, 'petclinic')
+        }
+      }
+    }
+
+    stage('Build container') {
       agent any
       steps {
         script {
