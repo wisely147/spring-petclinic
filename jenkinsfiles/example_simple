@@ -24,7 +24,7 @@ pipeline {
 	//sh 'mvn clean findbugs:findbugs package'
       }
     }
-    stage('Build') {
+    stage('Building') {
       agent any
       steps {
         sh 'mvn package -Dmaven.test.skip=true'
