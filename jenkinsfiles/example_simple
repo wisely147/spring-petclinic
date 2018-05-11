@@ -10,6 +10,13 @@ pipeline {
   }
 
   stages {
+    stage('Compiling') {
+      agent any
+      steps {
+        sh 'mvn clean compile'
+	//sh 'mvn clean findbugs:findbugs package'
+      }
+    }
     stage('Testing') {
       agent any
       steps {
