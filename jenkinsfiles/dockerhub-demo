@@ -53,9 +53,10 @@ pipeline {
            agent any
            steps {
                 script {
-                    if ( env.BRANCH_NAME == 'master' )
-                        sh "docker push liatrio/petclinic-tomcat:${containerVersion}"
-                    else sh "docker push liatrio/petclinic-tomcat:${env.BRANCH_NAME}"
+                    //if ( env.BRANCH_NAME == 'master' )
+                      //sh "docker push liatrio/petclinic-tomcat:${containerVersion}"
+                    //else sh "docker push liatrio/petclinic-tomcat:${env.BRANCH_NAME}"
+                    sh "echo push docker image to docker hub"
                 }
            }
        }
