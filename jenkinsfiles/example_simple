@@ -20,7 +20,7 @@ pipeline {
     stage('Testing') {
       agent any
       steps {
-        sh 'mvn clean test'
+        sh 'mvn test'
 	//sh 'mvn clean findbugs:findbugs package'
       }
     }
