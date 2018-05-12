@@ -34,7 +34,8 @@ pipeline {
     stage('Sonar Scan') {
       agent any
       steps {
-         sh 'mvn sonar:sonar -Dsonar.host.url=http://10.11.168.137:9000  -Dsonar.login=6a692f33b27cfc07db446bdd45ee3f683e84eef5'
+         //sh 'mvn sonar:sonar -Dsonar.host.url=http://10.11.168.137:9000  -Dsonar.login=6a692f33b27cfc07db446bdd45ee3f683e84eef5'
+         sh 'mvn sonar:sonar -Dsonar.host.url=http://192.168.3.29:9000  -Dsonar.login=6a692f33b27cfc07db446bdd45ee3f683e84eef5'
          //sh 'echo skip the Sonar Scan'
       }
     }
